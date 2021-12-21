@@ -1,0 +1,70 @@
+{
+  "extends": ["tslint-config-leapfrog/react", "tslint-plugin-prettier", "tslint-config-prettier", "tslint:recommended", "tslint-eslint-rules"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "array-type": [true, "array"],
+    "no-empty": true,
+    "no-console": [true, "log", "error"],
+    "no-shadowed-variable": false,
+    "triple-equals": true,
+    "ordered-imports":false,
+    "no-inferrable-types":false,
+    "prefer-const": [true, {"destructuring": "all"}],
+    "no-duplicate-imports": [true, {"allow-namespace-imports": true}],
+    "no-duplicate-variable": [true, "check-parameters"],
+    "no-require-imports": true,
+    "jsdoc-format": [true, "check-multiline-start"],
+    "eofline": true,
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+     "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": false,
+          "ClassDeclaration": false,
+          "ArrowFunctionExpression": false,
+          "FunctionExpression": true
+        }
+      }
+    ]
+  },
+  "jsRules": {
+      "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": false,
+          "ClassDeclaration": false,
+          "ArrowFunctionExpression": false,
+          "FunctionExpression": true
+        }
+      }
+    ]
+  },
+  "linterOptions": {
+    "exclude": [
+      ".github/**",
+      "**/*.md",
+      "**/*.scss",
+      "config/**/*.js", 
+      "cypress/**/*.md",
+      "cypress/**/*.json",
+      "node_modules/**/*.ts",
+      "src/serviceWorker.ts",
+      "**/*.d.ts", "**/*.min.js",
+      "coverage/lcov-report/*.js", 
+      "**/*.json", "assets/**/*.scss"
+    ]
+  }
+}

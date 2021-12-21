@@ -1,0 +1,99 @@
+$wrapper-logo-mt: 100px;
+$main-wrapper-mt: 80px;
+$main-container-ml: 200px;
+
+.wrapper {
+  position  : relative;
+  min-height: calc(100vh - #{$wrapper-logo-mt});
+  width     : 100%;
+  margin-top: $wrapper-logo-mt;
+  .container{
+    padding-bottom: 80px;
+  }
+
+  .footer{
+    position: absolute;
+    bottom  : 0;
+    width   : 100%;
+    padding-bottom: 36px;
+  }
+}
+
+.main-wrapper {
+  padding-left : 34px;
+  padding-right: 30px;
+  margin-top: $main-wrapper-mt
+}
+
+.main-container {
+  position    : relative;
+  margin-left : $main-container-ml;
+  width       : calc(100% - #{$main-container-ml});
+  padding-left: 20px;
+  padding-top : 5px;
+
+  .title {
+    margin-top: 0px;
+    margin-bottom: getSpacing('6x');
+  }
+}
+
+//login logo
+.header-logo img{
+  width: 175px;
+  height: 30px;
+}
+
+.location{
+  @include e(map){
+    width: 420px;
+    height: 280px;
+  }
+}
+
+.App{
+  min-width: 1024px;
+}
+
+/* TITLE with drop-shadow on scroll */
+.sticky {
+  height: 80px;
+  position: sticky;
+  -webkit-position: sticky;
+  top: 69px; 
+  z-index: 20;
+  -webkit-backface-visibility: hidden;
+}
+
+/* PSEUDO ELEMENTS to create drop-shadow */
+.sticky::before,
+.sticky::after {
+  content: '';
+  display: flex;
+  height: 16px;
+  position: sticky;
+  -webkit-position: sticky;
+}
+
+/* SHADOW */
+.sticky::before {
+  top: 130px;
+  box-shadow: 0 4px 6px -5px rgba(0,0,0,0.5);
+}
+
+.sticky::after {
+  background: linear-gradient(white 50%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.4) 70%, transparent);
+  top: 85px;
+  z-index: 10;
+}
+
+/* TITLE CONTENT */
+.sticky > div {
+  background: rgb(255, 255, 255);
+  height: 64px;
+  position: sticky;
+  -webkit-position: sticky;
+  top: 85px;
+  margin-top: -16px;
+  z-index: 100;
+}

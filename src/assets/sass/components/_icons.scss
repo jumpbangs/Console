@@ -1,0 +1,11 @@
+.rmd-icon {
+  width: 16px;
+  height: 16px;
+  fill : $text-gray;
+  vertical-align: middle;
+
+  @include m(large) {
+    width: 24px;
+    height: 24px;
+  }
+}

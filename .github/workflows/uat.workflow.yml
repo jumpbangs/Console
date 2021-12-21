@@ -1,0 +1,30 @@
+name: Copper Staging Deployment
+
+on:
+  push:
+    branches:
+      - uat
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Build React App
+        run: yarn && yarn build
+        env:
+          REACT_APP_AWS_REGION: ${{ secrets.REACT_APP_AWS_REGION }}
+          REACT_APP_API_BASE_URI: ${{ secrets.REACT_APP_API_BASE_URI }}
+          REACT_APP_AWS_COGNITO_POOL_ID: ${{ secrets.REACT_APP_AWS_COGNITO_POOL_ID }}
+          REACT_APP_GOOGLE_MAPS_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}
+          REACT_APP_AWS_IDENTITY_POOL_ID: ${{ secrets.REACT_APP_AWS_IDENTITY_POOL_ID }}
+          REACT_APP_AWS_COGNITO_CLIENT_ID: ${{ secrets.REACT_APP_AWS_COGNITO_CLIENT_ID }}
+          REACT_APP_AWS_IMAGE_UPLOAD_S3_BUCKET: ${{ secrets.REACT_APP_AWS_IMAGE_UPLOAD_S3_BUCKET }}
+      - name: Deploy app build to S3 bucket
+        run: aws s3 sync ./build/ s3://${{ secrets.AWS_UAT_S3_BUCKET }} --delete

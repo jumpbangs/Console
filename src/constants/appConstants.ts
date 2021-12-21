@@ -1,0 +1,10 @@
+export const FAILED = 'failed';
+export const DECLINED = 'declined';
+export const CONVERT_TO_DOLLAR = 100;
+export const DEFAULT_COUNTER_COUNT = 0;
+export const APP_NAME: string = 'Console';
+export const DEFAULT_DECIMAL_PRECISION = 2;
+export const DEFAULT_PAGINATION_LIMIT = 10;
+export const DEFAULT_LOCATION = 'All locations';
+export const DATA_NOT_AVAILABLE: string = 'Data not available';
+export const DEVICE_REGISTRATION_PLACEHOLDER = 'Enter device registration code';

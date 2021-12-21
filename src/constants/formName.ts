@@ -1,0 +1,12 @@
+export const LOGIN_FORM_NAME = 'Login form';
+export const EDIT_ACCOUNT_FORM_NAME = 'Edit Account form';
+export const CHANGE_PASSWORD_FORM = 'Change Password form';
+export const REGISTER_DEVICE_FORM = 'Register Device form';
+export const EDIT_LOCATION_FORM_NAME = 'Edit Location form';
+export const CHANGE_ADMIN_NAME_FORM = 'Change admin name form';
+export const FORGOT_PASSWORD_FORM_NAME = 'Forgot Password form';
+export const CREATE_PASSWORD_FORM_NAME = 'Create Password form';
+export const CHANGE_ADMIN_EMAIL_FORM = 'Change admin email form';
+export const REFUND_TRANSACTION_FORM = 'Refund Transaction form';
+export const FORGOT_PASSWORD_SUBMIT_FORM_NAME = 'Forgot Password Submit form';
+export const CHANGE_ADMIN_VALIDATION_FORM = 'Change admin email validation form';

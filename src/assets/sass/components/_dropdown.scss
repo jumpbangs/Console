@@ -1,0 +1,91 @@
+.dd-wrapper {
+  position: relative;
+
+  .dd-header {
+    padding              : 9px 12px;
+    width                : inherit;
+    min-width            : 177px;
+    max-width            : 185px;
+    background-image     : url("data:image/svg+xml;utf8, <svg width='8' height='4' viewBox='0 0 8 4' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M0.65625 0.65625H7.34375L4 4L0.65625 0.65625Z' fill='%2334495E'/></svg>");
+    background-repeat    : no-repeat;
+    background-position-y: center;
+    background-position-x: 93%;
+    padding-right        : 32px;
+    cursor               : pointer;
+
+    span,
+    svg {
+      vertical-align: middle;
+    }
+  }
+
+  .dd-menu {
+    position     : absolute;
+    top          : 44px;
+    background   : #FFFFFF;
+    box-shadow   : $box-shadow;
+    border-radius: 4px;
+    padding      : 12px 0;
+    width        : 100%;
+    min-width    : 309px;
+    max-height   : 330px;
+    overflow-y   : auto;
+    @extend %scrollBar;
+
+    @include e(item) {
+      position        : relative;
+      padding         : 9px 10px 9px 12px;
+      display         : flex;
+      align-items     : center;
+      background-color: white;
+      cursor          : default;
+
+      .info-icon {
+        fill  : $gray-75;
+        cursor: pointer;
+      }
+
+      .menu__icon svg {
+        fill: $gray-100;
+      }
+
+      &.selected {
+        .menu__icon {
+          background-color: $text-gray;
+
+          svg {
+            fill: #FFFFFF;
+          }
+        }
+
+        .info-icon {
+          fill: $primary-blue;
+        }
+      }
+
+      &:hover {
+        background-color: $gray-25;
+        cursor: pointer;
+      }
+
+      @include m(title) {
+        &:hover {
+          background-color: white;
+        }
+      }
+
+      .text {
+        width    : inherit;
+        max-width: 195px;
+      }
+    }
+
+    @include e(icon) {
+      &.right {
+        position        : absolute;
+        right           : 12px;
+        background-color: inherit;
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+$active-bg: #E6EBF2;
+
+.side-nav {
+  width   : $side-nav-width;
+  height  : 100%;
+  position: fixed;
+  left    : 0;
+  top: 80px;
+  margin-right: 0;
+  z-index: 40;
+  background-color: white;
+  overflow: auto;
+  padding : 5px 10px 34px 34px;
+  @extend %scrollBar;
+
+  @include e(item) {
+    margin-bottom: 9px;
+  }
+
+  @include e(link) {
+    font-weight  : getFontWeight('bold');
+    color: $text-gray;
+    display      : flex;
+    align-items  : center;
+    padding      : 12px;
+    border-radius: 4px;
+    @include transition();
+    
+    &:hover{
+      background-color: getColor('gray.25');
+    }
+
+    @include m(active) {
+      color           : $text-blue;
+      background-color: $active-bg;
+
+      .menu__icon {
+        background: $primary-blue;
+      }
+
+      .menu__icon svg path {
+        fill: #ffffff;
+      }
+      &:hover{
+        background-color: $active-bg;
+      }
+    }
+  }
+}

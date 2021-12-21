@@ -1,0 +1,26 @@
+.nametag {
+  width        : 24px;
+  height       : 24px;
+  border-radius: 100%;
+  overflow     : hidden;
+
+  @include m(lg) {
+    width : 30px;
+    height: 30px;
+  }
+
+  @include m(table) {
+    position: absolute;
+    top     : 11px;
+  }
+
+  @include m(location) {
+    width : 44px;
+    height: 44px;
+    min-width: 44px;
+    background-color: $gray-50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

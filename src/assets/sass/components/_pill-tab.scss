@@ -1,0 +1,55 @@
+.tab-section {
+  display        : flex;
+  justify-content: space-between;
+}
+
+.pill-tab {
+  display: flex;
+
+  @include e(node) {
+    @include getFontSize('body1');
+    color  : $text-gray;
+    border : 1px solid $gray-75;
+    padding: getSpacing('2x') getSpacing('4x');
+    cursor : pointer;
+
+    &:not(:first-child) {
+      border-left: 0;
+    }
+
+    &:hover {
+      background-color: $gray-25;
+    }
+
+    &:first-child{
+      border-radius: 4px 0 0 4px;
+    }
+    &:last-child{
+      border-radius: 0 4px 4px 0;
+    }
+
+    @include m(left) {
+      border-radius: 4px 0 0 4px;
+    }
+
+    @include m(right) {
+      border-radius: 0 4px 4px 0;
+      border-left  : 0;
+    }
+
+    @include m(active) {
+      color           : $text-blue;
+      font-weight     : getFontWeight('bold');
+      background-color: $gray-25;
+    }
+
+    @include m(disabled) {
+      color : $gray-75;
+      cursor: default;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}

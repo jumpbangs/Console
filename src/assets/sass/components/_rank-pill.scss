@@ -1,0 +1,16 @@
+.rank-pill {
+  width           : 24px;
+  height          : 24px;
+  position        : absolute;
+  top             : 50%;
+  transform       : translateY(-50%);
+  display         : inline-flex;
+  justify-content : center;
+  align-items     : center;
+  border-radius   : 4px;
+  background-color: $violet;
+  color           : $white;
+  border          : 1px solid $violet;
+  margin-left     : getSpacing('4x');
+  font-weight     : getFontWeight('semibold');
+}

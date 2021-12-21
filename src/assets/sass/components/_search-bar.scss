@@ -1,0 +1,37 @@
+.search-bar{
+  position: relative;
+  width: 100%;
+  max-width: 348px;
+
+  @include e(input){
+    @extend %inputDefault;
+    padding-left: 44px;
+  }
+
+  @include e(icon){
+    position: absolute;
+    z-index: 10;
+    left: 16px;
+    top: 55%;
+    transform: translateY(-55%);
+    fill: $gray-75;
+  }
+
+  @include e(close-icon){
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    cursor: pointer;
+    @include transition();
+
+    &:hover{
+      opacity: 1;
+    }
+  }
+
+  @include mqmax(xl){
+    margin-bottom: getSpacing('2x');
+  }
+}

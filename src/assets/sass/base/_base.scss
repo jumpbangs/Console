@@ -1,0 +1,139 @@
+// ==========================================================================
+// Base
+// A Base rule is applied to HTML element using an element selector, a
+// descendent selector, or a child selector, along with any pseudo-classes.
+// We cannot reference any element defined here by their respective class or ID name.
+// This defines the default styling for how that element should look.
+// Changes in style other than default should be overwritten using other partials.
+// ==========================================================================
+
+// Import Custom font here.
+@if variable-exists(font-url) {
+  @import url($font-url);
+}
+
+@if variable-exists(typefaces) {
+  @each $file, $option in $typefaces {
+    @font-face {
+      font-family: map-get(map-get($typefaces, $file), family);
+      font-style: map-get(map-get($typefaces, $file), style);
+      font-weight: map-get(map-get($typefaces, $file), weight);
+      src: url('../../fonts/#{$file}.ttf') format('ttf');
+    }
+  }
+}
+
+// Reset CSS
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // Global Clearfixing
+  @if $grid-type == float {
+    &:after {
+      clear: both;
+      content: "";
+      display: block;
+    }
+  }
+}
+
+// Base Code
+html,
+body {
+  font-size: 87.50%;
+}
+
+html.full-height {
+  height: 100%;
+  body{
+    height: 100%;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  color: $text-gray;
+  font-family: $font-primary;
+  font-size: $base__font-size;
+  text-rendering: optimizeLegibility;
+  line-height: $base__body__line;
+}
+
+a {
+  outline: none;
+  color: $text-blue;
+  text-decoration: none;
+}
+
+@if $grid-type == float {
+  a,
+  span,
+  strong {
+    &:after {
+      @extend %clearfix-none;
+    }
+  }
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-primary;
+  line-height: $base__header__line;
+}
+
+h1 {
+  @include getHeaderFontSize("h1");
+}
+
+h2 {
+  @include getHeaderFontSize("h2");
+}
+
+h3 {
+  @include getHeaderFontSize("h3");
+}
+
+h4 {
+  @include getHeaderFontSize("h4");
+}
+
+h5 {
+  @include getHeaderFontSize("h5");
+}
+
+h6 {
+  @include getHeaderFontSize("h6");
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-decoration:hover,
+input[type="search"]::-webkit-search-cancel-button:hover { 
+    cursor:pointer; 
+}

@@ -1,0 +1,18 @@
+$btn-roundness: 4px;
+
+$btn-base-text-color: getColor('white.base');
+
+$btn-size: (
+  'small': (
+    'font-size': getFontSize('small'),
+    'spacing': getSpacing('1x') getSpacing('2x'),
+  ),
+  'regular': (
+    'font-size': getFontSize('body1'),
+    'spacing': getSpacing('3x') getSpacing('4x'),
+  ),
+  'large': (
+    'font-size': getFontSize('body1'),
+    'spacing': 14px 20px,
+  ),
+);

@@ -1,0 +1,107 @@
+$dropdown-shadow: $box-shadow;
+
+.custom-dropdown {
+
+  @include e(label){
+    @extend .form-group__label;
+  }
+
+  .select-container {
+    @include e(indicator-separator) {
+      display: none;
+    }
+
+    @include e(control) {
+      cursor       : pointer;
+      width        : 100%;
+      min-width    : 148px;
+      min-height   : $input-height;
+      color        : $text-gray;
+      border-radius: $input-border-radius;
+      @include getFontSize('body1');
+      height       : $input-height;
+      border       : 1px solid $gray-75;
+
+      &:hover{
+        border-color: $gray-75;
+      }
+      @include m(is-focused) {
+        background-color: none;
+        box-shadow: $input-box-shadow;
+        border-color: $input-focus-border-color;
+        @include transition();
+
+        &:hover {
+          border-color: getColor('primary.light');
+        }
+      }
+
+      @include m(is-disabled){
+        background-color: getColor('gray.25');
+        border-color: getColor('gray.75');
+      }
+    }
+    @include e(menu-list){
+      max-height: 230px;
+      overflow-y: auto;
+      @extend %scrollBar;
+    }
+
+    @include e(dropdown-indicator) {
+      svg {
+        fill: getColor('gray.75') !important;
+      }
+
+      padding: getSpacing('1x') getSpacing('2x');
+    }
+
+    @include e(single-value) {
+      color: $text-gray;
+
+      @include m(is-disabled){
+        color: getColor('gray.100')
+      }
+    }
+
+    @include e(value-container) {
+      padding-right: 0;
+      padding-left : 14px;
+    }
+    @include e(indicators) {
+      height: 100%;
+    }
+
+    @include e(placeholder){
+      color: $gray-75;
+    }
+  }
+}
+
+.select-container {
+  @include e(menu) {
+    min-width:  300px;
+    box-shadow: $dropdown-shadow !important;
+    @include getFontSize('body1');
+  }
+
+  @include e(option) {
+    cursor: pointer !important;
+    color : $text-gray !important;
+
+    @include m(is-focused) {
+      background-color: getColor('gray.25') !important;
+    }
+
+    @include m(is-selected) {
+      background-color: white !important;
+      color           : $text-gray !important;
+      font-weight     : getFontWeight('bold');
+    }
+    @include m(is-disabled) {
+      color           :getColor('gray.75') !important;
+      font-weight: getFontWeight('normal');
+      opacity: 50%;
+      cursor: default !important;
+    }
+  }
+}

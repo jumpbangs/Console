@@ -1,0 +1,241 @@
+/* Button Defaults */
+%btn-default {
+  padding         : 0;
+  border          : none;
+  outline         : none;
+  font            : inherit;
+  color           : inherit;
+  background-color: transparent;
+  border          : 2px solid transparent;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  font-weight     : getFontWeight('bold');
+  flex-shrink     : 0;
+  max-height      : 48px;
+  @include transition();
+  cursor: pointer;
+
+  &:active:enabled {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    cursor          : default;
+    background-color: getColor('gray.75');
+    border-color    : getColor('gray.75');
+    color           : white;
+    fill            : white;
+  }
+}
+
+/* Mixin to define button size
+//
+// Parameters:
+// --> $padding: Any CSS Size
+// --> $font-size: Any CSS Size
+//
+*/
+@mixin btn-size($padding: get('regular.spacing', $btn-size), $font-size: get('regular.font-size', $btn-size)) {
+  padding  : $padding;
+  font-size: $font-size;
+}
+
+/* Mixin to define button color
+//
+// Parameters:
+// --> $bgColorKey: Any CSS Color
+// --> $textColorKey: Any CSS Color
+// --> $outlined: Boolean
+//
+// Note: fill is for svg icon.
+*/
+@mixin btn-color($bgColorKey: null, $textColorKey: null, $outlined: null, $customTextKey: null) {
+  @if ($outlined==null or $outlined==false) {
+    background-color: $bgColorKey;
+
+    @if ($customTextKey==null) {
+      color: $textColorKey;
+      fill : $textColorKey;
+    }
+
+    @else {
+      color: $customTextKey;
+      fill : $customTextKey;
+    }
+  }
+
+  @else {
+    border-color: $bgColorKey;
+
+    @if ($customTextKey==null) {
+      color: $textColorKey;
+      fill : $textColorKey;
+    }
+
+    @else {
+      color: $customTextKey;
+      fill : $customTextKey;
+    }
+  }
+}
+
+/* Mixin to define button hover color
+//
+// Parameters:
+// --> $bgColorKey: Any CSS Color
+// --> $textColorKey: Any CSS Color
+//
+*/
+@mixin btn-hover($bgColorKey: null, $textColorKey: null) {
+  &:hover:enabled {
+    background-color: $bgColorKey;
+    color           : $textColorKey;
+    fill            : $textColorKey;
+  }
+}
+
+/* Mixin to define button radius
+//
+// Parameters:
+// --> $border-radius: Border radius as in CSS
+//
+*/
+@mixin btn-roundness($border-radius: null) {
+  border-radius: $border-radius;
+}
+
+/* Parent Mixin that generates button related classes
+//
+// Parent Class: 
+// --> btn
+//
+// Modifiers:
+// --> variant ("primary", "secondary") or as per defined in $btn-variant Map
+//       ## Usage:
+//       btn--primary, btn--secondary
+//       ## For outlined buttons:
+//       btn--outlined--primary, btn--outlined--secondary
+//
+// --> size ("small", "regular", "large") or as per defined in $btn-size Map
+//       ## Usage:
+//       btn--small, btn-regular, btn-large
+//
+// --> rounded : defines if button has rounded button
+//       ## Usage:
+//       btn--rounded
+*/
+@mixin btn-maker($class: 'btn', $font-weight: null, $rounded: null) {
+  .#{$class} {
+    //button defaults
+    @extend %btn-default;
+    //default button height and padding (ie. Regular size)
+    @include btn-size;
+
+    @if ($font-weight) {
+      font-weight: getFontWeight('bold');
+    }
+
+    @include e(icon) {
+      width      : 16px;
+      height     : auto;
+      line-height: 1;
+      fill       : inherit;
+
+      @include m(left) {
+        margin-right: getSpacing('2x');
+      }
+
+      @include m(right) {
+        margin-left: getSpacing('2x');
+      }
+    }
+
+    //generates modifier for button size
+    @each $name,
+    $map in $btn-size {
+      @include m($name) {
+        @include btn-size($padding: get('spacing', $map), $font-size: get('font-size', $map));
+      }
+    }
+
+    //generates modifier for button variants
+    @each $type,
+    $map in $component-color-variants {
+      @include m(shadowed) {
+        &-#{$type} {
+          box-shadow: 0px 8px 15px rgba(get('bg-color', $map), 0.3);
+        }
+      }
+
+      @include m($type) {
+        @if not map-has-key($map, 'text-color') {
+          @include btn-color($bgColorKey: get('bg-color', $map), $textColorKey: $btn-base-text-color);
+        }
+
+        @else {
+          @include btn-color($bgColorKey: get('bg-color', $map), $textColorKey: get('text-color', $map));
+        }
+
+        @if not map-has-key($map, 'hover-text-color') {
+          @include btn-hover($bgColorKey: get('hover-color', $map), $textColorKey: $btn-base-text-color);
+        }
+
+        @else {
+          @include btn-hover($bgColorKey: get('hover-color', $map), $textColorKey: get('hover-text-color', $map));
+        }
+      }
+
+      @include m(outlined) {
+        &-#{$type} {
+          @if not map-has-key($map, 'text-color') {
+            @include btn-color($bgColorKey: get('bg-color', $map),
+              $textColorKey: get('bg-color', $map),
+              $outlined: true);
+          }
+
+          @else {
+            @include btn-color($bgColorKey: get('bg-color', $map),
+              $textColorKey: get('text-color', $map),
+              $outlined: true);
+          }
+
+          @if not map-has-key($map, 'hover-text-color') {
+            @include btn-hover($bgColorKey: get('hover-color', $map), $textColorKey: $btn-base-text-color);
+          }
+
+          @else {
+            @include btn-hover($bgColorKey: get('hover-color', $map), $textColorKey: get('hover-text-color', $map));
+          }
+        }
+      }
+
+      @include m(text) {
+        &-#{$type} {
+          @include btn-color($bgColorKey: transparent, $textColorKey: get('bg-color', $map));
+
+          @if not map-has-key($map, 'hover-text-color') {
+            @include btn-hover($bgColorKey: get('hover-color', $map), $textColorKey: $btn-base-text-color);
+          }
+
+          @else {
+            @include btn-hover($bgColorKey: get('hover-color', $map), $textColorKey: get('hover-text-color', $map));
+          }
+        }
+      }
+
+      @include m(no-border){
+        border: 0;
+      }
+    }
+
+    //generates modifier for roundness of button
+    @if ($rounded==true) {
+      @include btn-roundness($btn-roundness);
+    }
+
+    @include m(block) {
+      width: 100%;
+    }
+  }
+}

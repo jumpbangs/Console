@@ -1,0 +1,125 @@
+.time-period {
+  background     : #F6F9FC;
+  border         : 1px solid #CFD7DF;
+  box-sizing     : border-box;
+  border-radius  : 4px;
+  width          : 260px;
+  display        : inline-block;
+  padding        : 0px 15px;
+  display        : inline-flex;
+  align-items    : center;
+  height         : 48px;
+
+  @include e(icon) {
+    margin-right: getSpacing('2x');
+    fill        : $gray-75;
+    min-width: 16px;
+  }
+
+  .DateRangePicker{
+    width: 100%;
+  }
+}
+
+.DateRangePickerInput {
+  background : none;
+  display    : flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .DateInput {
+    background-color: #F6F9FC;
+    width           : 45%;
+  }
+
+  .DateInput_input {
+    @include getFontSize('body1');
+    font-weight: getFontWeight('normal');
+    color      : $text-gray;
+    background : #F6F9FC;
+    padding    : 0px;
+    border     : 0;
+
+    @include e(focused) {
+      border    : 0;
+      box-shadow: 0px 2px 0px getColor('primary.base');
+    }
+  }
+
+  @include e(showClearDates) {
+    padding-right: getSpacing('2x');
+  }
+
+  .DateRangePickerInput_clearDates {
+    padding: 0;
+    margin : 0;
+    outline: 0;
+    right  : -6px;
+
+    &:hover {
+      background-color: inherit;
+    }
+  }
+
+  .DateRangePickerInput_clearDates_svg {
+    fill        : #82888a;
+    height      : 10px;
+    width       : 10px;
+    display     : block;
+    fill-opacity: 0.6;
+
+    &:hover {
+      fill-opacity: 1;
+    }
+  }
+
+  .DateRangePickerInput_arrow {
+    margin-right: 4px;
+    margin-left: 4px;
+    width: 5%;
+  }
+}
+
+// calendar styles
+.CalendarDay__selected_span {
+  background-color: getColor('primary.light');
+  border-color    : lighten($color: getColor('primary.base'), $amount: 2);
+
+  &:hover {
+    background-color: getColor('primary.base');
+    border-color    : getColor('primary.base');
+  }
+}
+
+.CalendarDay__selected {
+  background-color: getColor('primary.dark');
+  border-color    : getColor('primary.dark');
+
+  &:hover {
+    background-color: darken($color: getColor('primary.dark'), $amount: 4);
+    border-color    : getColor('primary.dark');
+  }
+}
+
+.CalendarDay__hovered_span:hover,
+.CalendarDay__hovered_span {
+  background  : getColor('gray.75');
+  color       : getColor('gray.100');
+  border-color: getColor('gray.50');
+}
+
+.DayPickerKeyboardShortcuts_show__bottomRight {
+  &::before {
+    border-right-color: getColor('primary.base');
+  }
+
+  &:hover::before {
+    border-right: 33px solid getColor('primary.dark');
+  }
+}
+
+.time-period.disable-end-date{
+  input[name=endDate]{
+    pointer-events: none;
+  }
+}

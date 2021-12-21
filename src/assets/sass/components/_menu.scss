@@ -1,0 +1,41 @@
+.menu {
+  @include m(header) {
+    border       : 1px solid #E6EBF2;
+    border-radius: 5px;
+    @include getFontSize('body1');
+    display      : flex;
+    align-items  : center;
+
+    .menu__item {
+      padding: 9px 8px 9px 12px;
+      max-width: 177px;
+      cursor: default;
+      @extend %ellipsis;
+    }
+  }
+
+  @include e(icon) {
+    width           : 24px;
+    height          : 24px;
+    background-color: $gray-50;
+    border-radius   : 4px;
+    display         : inline-flex;
+    align-items     : center;
+    justify-content : center;
+    margin-right    : 12px;
+    overflow: hidden;
+
+    @include m(logo) {
+      background-color: transparent;
+    }
+  }
+
+  @include e(item) {
+    padding: 12px;
+
+    span,
+    svg {
+      vertical-align: middle;
+    }
+  }
+}

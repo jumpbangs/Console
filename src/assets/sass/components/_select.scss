@@ -1,0 +1,18 @@
+.select {
+  @extend %inputDefault;
+  cursor             : pointer;
+  max-width          : 130px;
+  -moz-appearance    : none;
+  -webkit-appearance : none;
+  appearance         : none;
+  background-color   : #fff;
+  background-image   : url("data:image/svg+xml;utf8, <svg width='8' height='4' viewBox='0 0 8 4' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M0.65625 0.65625H7.34375L4 4L0.65625 0.65625Z' fill='%23CFD7DF'/></svg>");
+  background-repeat  : no-repeat;
+  background-position: right .7em top 50%, 0 0;
+  padding-right: 20px;
+  @extend %ellipsis;
+  /* Hide arrow icon in IE browsers */
+  &::-ms-expand {
+    display: none;
+  }
+}

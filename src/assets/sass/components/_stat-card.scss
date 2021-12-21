@@ -1,0 +1,41 @@
+.card-section {
+  display        : flex;
+  align-items    : flex-start;
+  justify-content: space-between;
+  padding-bottom : 22px;
+  border-bottom  : 1px solid $bg-blue-color;
+}
+
+.stat-card {
+  width           : 100%;
+  max-width       : 220px;
+  border-radius   : 4px;
+  background-color: getColor('gray.25');
+  text-align      : center;
+  padding         : getSpacing('5x') getSpacing('1x');
+  margin          : 0px getSpacing('2x');
+
+  &:first-child {
+    margin-left: 0px;
+  }
+
+  &:last-child {
+    margin-right: 0px;
+  }
+
+  @include e(title) {
+    color     : getColor('gray.100');
+    margin-top: getSpacing('1x');
+  }
+
+  @include e(value) {
+    color     : $text-gray;
+    margin-top: getSpacing('2x');
+    font-weight: getFontWeight('bold');
+    font-size: 26px;
+
+    @include mqmax(xl){
+      font-size: 24px;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.status-indicator {
+  display    : flex;
+  align-items: center;
+  @include getFontSize('body1');
+
+  @include m(large) {
+    .status-indicator {
+      @include e(bulb) {
+        width : 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  @each $name,
+  $colorMap in $component-color-variants {
+    @include m(#{$name}) {
+      .status-indicator {
+        @include e(bulb) {
+          background-color: get('bg-color', $colorMap);
+        }
+      }
+    }
+    @include m(#{$name}-text) {
+      .status-indicator {
+        @include e(bulb) {
+          background-color: get('bg-color', $colorMap);
+        }
+        @include e(label) {
+          @if map-has-key($colorMap, 'text-color') {
+            color: get('text-color', $colorMap);
+          }
+  
+          @else {
+            color: get('bg-color', $colorMap);
+          }
+        }
+      }
+    }
+  }
+
+  @include e(bulb) {
+    width           : 12px;
+    height          : 12px;
+    background-color: getColor('primary.base');
+    border-radius   : $circle-radius;
+  }
+
+  @include e(label) {
+    margin-left: getSpacing('2x');
+  }
+}

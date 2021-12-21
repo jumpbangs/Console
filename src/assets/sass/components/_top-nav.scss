@@ -1,0 +1,54 @@
+.header {
+  padding: 18px 30px 23px;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  background-color: #ffffff;
+  .logo-wrapper {
+    padding-left: 14px;
+  }
+  a{
+    color: inherit;
+  }
+}
+
+.header-left {
+  display    : flex;
+  align-items: center;
+
+  @include e(menu) {
+    margin-left: 45px;
+  }
+}
+
+.header-right{
+  
+  @include e(menu){
+    display    : flex;
+    align-items: center;
+  }
+
+  @include e(item){
+    margin-left: 26px;
+    display: flex;
+    padding: getSpacing('2x') 0;
+    align-items: center;
+
+    &.user{
+      padding: getSpacing('2x');
+      border-radius: 2px;
+      @include transition();
+
+      &:hover{
+        background-color: getColor('gray.25');
+      }
+    }
+  }
+}
+
+.user{
+  @include e(name){
+    max-width: 150px;
+    @extend %ellipsis;
+  }
+}

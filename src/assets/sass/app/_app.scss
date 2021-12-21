@@ -1,0 +1,232 @@
+.form-wrapper-center {
+  position  : relative;
+  max-width : 370px;
+  margin    : 0 auto 26px;
+  text-align: left;
+
+  .additional-control {
+    position   : absolute;
+    right      : 0;
+    top        : 0;
+    color      : $text-blue;
+    @include getFontSize('small');
+  }
+}
+
+.logo-wrapper {
+  width: 95px;
+
+  img{
+    width: 100%;
+    height: 30px;
+  }
+}
+
+.text-ellipsis {
+  @extend %ellipsis;
+}
+
+// dashboard filter section
+.filter-section {
+  display: flex;
+
+  @include e(left) {
+    display       : flex;
+    align-items   : center;
+    flex-direction: row;
+    flex-grow     : 1;
+
+    @include mqmax(xl) {
+      display: block;
+    }
+  }
+
+  @include e(right) {
+    display        : inline-flex;
+    align-items    : flex-start;
+    justify-content: flex-end;
+    flex-direction : row;
+    flex-wrap      : wrap;
+    margin-left    : getSpacing('2x');
+  }
+  @include e(dropdown){
+    width: 148px;
+    display: inline-block;
+  }
+}
+
+//list card for modal details.
+.list-card {
+  width        : 100%;
+  max-width    : 217px;
+  position     : relative;
+  margin-bottom: getSpacing('6x');
+
+  @include e(label) {
+    @include getFontSize('small');
+    font-weight: getFontWeight('bold');
+    margin-bottom: getSpacing('2x');
+  }
+  
+  @include e(text){
+    word-break: break-word;
+
+    span{
+      display: inline-block;
+      white-space: nowrap;
+    }
+  }
+
+  @include m(full-width){
+    max-width: 100%;
+  }
+}
+
+.message-box {
+  width         : 100%;
+  max-width     : 362px;
+  margin        : getSpacing('5x') auto;
+  padding       : 16px 34px;
+  display       : flex;
+  align-items   : center;
+  flex-direction: column;
+
+  .check-icon {
+    fill  : $green;
+    width : 44px;
+    height: 44px;
+  }
+
+  .btn {
+    width    : 100%;
+    max-width: 200px;
+  }
+
+  @include e(icon){
+    fill: getColor('gray.75');
+    width: 44px;
+    height: 44px;
+  }
+}
+
+//Edit location section (logo upload)
+.edit-location {
+  input[type="file"] {
+    display: none;
+  }
+
+  .merchant-logo {
+    position        : relative;
+    width           : 85px;
+    height          : 85px;
+    border-radius   : $circle-radius;
+    overflow        : hidden;
+    background-color: $gray-75;
+
+    .rmd-icon {
+      position : absolute;
+      top      : 50%;
+      left     : 50%;
+      transform: translate(-50%, -50%);
+      cursor   : pointer;
+    }
+
+    img {
+      height    : 100%;
+      display   : block;
+      object-fit: cover;
+    }
+
+    @include e(overlay) {
+      position        : absolute;
+      top             : 0;
+      left            : 0;
+      width           : 100%;
+      height          : 100%;
+      background-color: rgba($color: $text-gray, $alpha: 0.7);
+      opacity         : 0;
+      @include transition();
+
+      .icon-wrapper {
+        position        : absolute;
+        width           : 34px;
+        height          : 34px;
+        top             : 50%;
+        left            : 50%;
+        transform       : translate(-50%, -50%);
+        background-color: #DFE7F9;
+        border-radius   : $circle-radius;
+        cursor          : pointer;
+      }
+    }
+
+    &:hover {
+      .merchant-logo__overlay {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.chart-section{
+  width: 100%;
+  height: 260px;
+  margin-top: getSpacing('5x');
+  .chart{
+    width: 100%;
+    height: 260px;
+    padding-left: getSpacing('10x');
+    margin-left: -15px;
+    svg{
+      overflow: visible;
+    }
+  }
+}
+
+.empty-chart{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.pie-chart-section{
+  margin-bottom: 50px;
+}
+
+.pie-chart{
+  position: relative;
+  width: 90%;
+  min-width: 400px;
+  max-width: 600px;
+  height: 270px;
+}
+
+.link{
+  color: getColor('text.blue');
+  cursor: pointer;
+  @include transition();
+
+  &:hover{
+    color: darken($color: getColor('text.blue'), $amount: 25);
+  }
+}
+
+// top location table
+.top-location{
+  padding-top: getSpacing('5x');
+  border-top: 1px solid getColor('gray.50');
+  @include e(title){
+    font-size: 16px;
+    font-weight: getFontWeight('bold');
+    color: getColor('gray.100');
+  }
+  .table{
+    @include e(row){
+      cursor: default;
+
+      &:hover{
+        background-color: #ffffff;
+      }
+    }
+  }
+}

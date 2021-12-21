@@ -1,0 +1,37 @@
+# Build directory
+dist
+
+# Test directories
+coverage
+.nyc_output
+
+# Logs
+logs
+
+# Minified files
+**/*{.,-}min.js
+
+# NPM files
+package.json
+
+src/assets/
+node_modules/
+public/
+
+src/serviceWorker.ts
+
+# files
+.eslintrc.json
+.env
+.editorconfig
+.prettierrc
+tsconfig.json 
+tsconfig.test.json 
+tslint.json
+README.md
+yarn.lock
+
+
+# cypress
+cypress/**.json
+cypress/README.md
